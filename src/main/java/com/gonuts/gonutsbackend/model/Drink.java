@@ -7,9 +7,18 @@ public class Drink {
     private String price;
     private String category;
 
+
+    //Constructor with arguments 
+    public Drink(String id, String name, String description, String price, String category) {
+        this.id = id;
+        this.name = name;
+        this.description = description;
+        this.price = price;
+        this.category = category;
+    }
+
     public String getId(){
         return id;
-
     }
     public void setId(String id){
         this.id = id;

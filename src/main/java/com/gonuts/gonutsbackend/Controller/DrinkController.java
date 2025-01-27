@@ -2,6 +2,7 @@ package com.gonuts.gonutsbackend.Controller;
 
 import java.util.List;
 
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -26,9 +27,25 @@ public class DrinkController {
     }
 
     @GetMapping("/getDrink/{drink}")
-    public String getDrink(@PathVariable String drink){
-        DrinkService.getDrinks(drink);
+    public ResponseEntity<Object> getDrink(@PathVariable String drink) {
+        Drink foundDrink = DrinkService.getDrinkByName(drink);
+        if (foundDrink != null) {
+            return ResponseEntity.ok(foundDrink);
+        } else {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Drink not found");
+        }
     }
+
+    @GetMapping("/getMenu/{category}")
+    public ResponseEntity<Object> getMenu(@PathVariable String category){
+        List<Drink> drinks = DrinkService.getCategory(category);
+        if (drinks.isEmpty()){
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("No drinks found in this category");
+        } else {
+            return ResponseEntity.ok(drinks);
+        }
+    }
+
     
 
     @PostMapping("/addDrink")
