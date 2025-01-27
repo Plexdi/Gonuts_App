@@ -1,0 +1,23 @@
+{
+    "users": {
+      "user1": {
+        "name": "John Doe",
+        "email": "john.doe@example.com",
+        "phone": "1234567890",
+        "loyaltyPoints": 100
+      },
+      "user2": {
+        "name": "Jane Smith",
+        "email": "jane.smith@example.com",
+        "phone": "9876543210",
+        "loyaltyPoints": 200
+      },
+      "user3": {
+        "name": "Alice Johnson",
+        "email": "alice.johnson@example.com",
+        "phone": "5551234567",
+        "loyaltyPoints": 150
+      }
+    }
+  }
+  
