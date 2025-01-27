@@ -22,7 +22,6 @@ public class UserService {
     public String getLoyaltyPoints(String userId){
         try {
             DataSnapshot dataSnapshot = fetchDataSnapshot().get();
-
             for (DataSnapshot userSnapShot : dataSnapshot.getChildren()){ // Loop through all users
                 if (userSnapShot.getKey().equalsIgnoreCase(userId)){ // Check if the user ID matches
                     Integer loyaltyPoints = userSnapShot.child("loyaltyPoints").getValue(Integer.class);
