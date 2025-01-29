@@ -36,3 +36,10 @@ target/
 *.log
 *.class
 firebase-service-account.json
+
+# Ignore sensitive files
+.env
+*.json
+application.properties
+firebase-service-account.json
+

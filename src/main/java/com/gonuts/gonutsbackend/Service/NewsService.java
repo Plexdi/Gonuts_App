@@ -1,5 +1,6 @@
 package com.gonuts.gonutsbackend.Service;
 
+import java.time.LocalDateTime;
 import java.util.UUID;
 
 import org.springframework.stereotype.Service;
@@ -27,7 +28,7 @@ public class NewsService {
     
             // Save the news data asynchronously
             ApiFuture<Void> future = newsReference.child(newsId).setValueAsync(news);
-    
+            
             try {
                 // Block and check for any exceptions
                 future.get();
@@ -44,9 +45,16 @@ public class NewsService {
     public boolean validateNews(News news){
 
         String title = news.getTitle();
+        String date = news.getDate();
 
         if (title == null || title.isEmpty() || title.length() < 5){
             throw new IllegalArgumentException("Title must be at least 5 charactesr long. ");
+        } 
+
+        if (date == null || date.isEmpty()){
+            LocalDateTime currentDate = LocalDateTime.now();
+            String dateIntoString = currentDate.toString();
+            news.setDate(dateIntoString);
         }
         return true;
     }
