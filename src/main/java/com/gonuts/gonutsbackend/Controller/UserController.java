@@ -5,6 +5,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -39,12 +40,29 @@ public class UserController {
 
     @GetMapping("/getUser/LoyaltyPoints/{userId}")
     public ResponseEntity<?> getLoyaltyPoint(@PathVariable String userId){
-        String loyaltyPoints = userService.getLoyaltyPoints(userId);
+        Integer loyaltyPoints = userService.getLoyaltyPoints(userId);
         if (loyaltyPoints != null){
             return ResponseEntity.ok("Loyalty Points: " + loyaltyPoints);
         } else {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("User not found");
         }
     }
+
+    @PutMapping("/addLoyaltyPoint/{userId}/{amount}")
+    public ResponseEntity<String> addLoyaltyPoint(
+        @PathVariable String userId,
+        @PathVariable Integer amount
+    ){
+        String responseMessage = userService.addLoyaltyPoint(userId, amount);
+        return ResponseEntity.ok(responseMessage);
+    }
+
+    @PutMapping("/redeemLoyalty/{userId}/{drinkSize}")
+    public ResponseEntity<String> redeemLoyalty(@PathVariable String userId, @PathVariable String drinkSize) {
+        String response = userService.redeemLoyaltyPoints(userId, drinkSize);
+        return ResponseEntity.ok(response);
+    }
+
+
 }
 

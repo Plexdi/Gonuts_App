@@ -12,20 +12,18 @@ import com.google.firebase.database.FirebaseDatabase;
 public class OrderService {
     DatabaseReference orderRef;
 
-    
-
     public OrderService(){
         this.orderRef = FirebaseDatabase.getInstance().getReference("Orders");
     }
 
         public boolean validateDate(Order order){
-            String createdAt = order.getCreatedAt();
-            if (createdAt == null){
-                LocalDateTime orderPlaced = LocalDateTime.now();
-                String orderPlacedString = orderPlaced.toString();
-                order.setOrderDate(orderPlacedString);
-            }
-            return true;
+        String createdAt = order.getCreatedAt();
+        if (createdAt == null){
+            LocalDateTime orderPlaced = LocalDateTime.now();
+            String orderPlacedString = orderPlaced.toString();
+            order.setOrderDate(orderPlacedString);
+        }
+        return true;
     }
 
 }

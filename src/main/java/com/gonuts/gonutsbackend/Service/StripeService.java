@@ -1,12 +1,13 @@
 package com.gonuts.gonutsbackend.Service;
 
+import org.springframework.stereotype.Service;
+
 import com.stripe.Stripe;
 import com.stripe.exception.StripeException;
-import com.stripe.model.billingportal.Session;
-import com.stripe.param.billingportal.SessionCreateParams;
+import com.stripe.model.checkout.Session;
+import com.stripe.param.checkout.SessionCreateParams;
 
-#
-
+@Service
 public class StripeService {
 
     public StripeService(){
@@ -27,7 +28,7 @@ public class StripeService {
                         .setUnitAmount((long) (amount * 100)) // Convert to cents
                         .setProductData(
                             SessionCreateParams.LineItem.PriceData.ProductData.builder()
-                                .setName("GoNuts Order")
+                                .setName("Gonuts Order")
                                 .build()
                         )
                         .build()

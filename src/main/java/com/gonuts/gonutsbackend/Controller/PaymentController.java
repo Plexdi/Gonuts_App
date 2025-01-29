@@ -19,13 +19,14 @@ public class PaymentController {
         this.stripeService = stripeService;
     }
 
-    @PostMapping("/create-checkout")
+    @PostMapping("/checkout")
     public ResponseEntity<String> createCheckout(@RequestParam double amount) {
         try {
-            String sessionUrl = stripeService.createCheckOutSession(amount, "usd", "https://frontend.com/success", "https://frontend.com/cancel");
+            String sessionUrl = stripeService.createCheckOutSession(amount, "GBP", "http://localhost:3000/success", "https://example.com/cancel");
             return ResponseEntity.ok(sessionUrl);
         } catch (StripeException e) {
             return ResponseEntity.status(500).body("Error creating checkout session: " + e.getMessage());
         }
     }
+    
 }

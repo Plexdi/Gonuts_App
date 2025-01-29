@@ -2,7 +2,11 @@ package com.gonuts.gonutsbackend.model;
 
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.gonuts.gonutsbackend.Util.OrderIdGenerator;
 
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class Order {
     private String orderId;
     private String userId;
@@ -14,7 +18,7 @@ public class Order {
 
     //constructor
     public Order(){
-        this.orderId = java.util.UUID.randomUUID().toString(); // Auto-generate ID
+        this.orderId = OrderIdGenerator.generateShortOrderId(5); // Auto-generate ID
         this.createdAt = null;
         this.paymentStatus = "PLACED"; // Default order status
         this.paymentStatus = "PENDING"; // Default payment status
@@ -43,7 +47,7 @@ public class Order {
     public void setItems(List<String> items) {
         this.items = items;  // Setter should assign the value
     }
-
+    @JsonProperty("totalAmount") 
     public double getAmount(){
         return totalAmount;
     }
