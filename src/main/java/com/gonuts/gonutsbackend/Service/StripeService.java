@@ -11,7 +11,7 @@ import com.stripe.param.checkout.SessionCreateParams;
 public class StripeService {
 
     public StripeService(){
-        Stripe.apiKey = "sk_test_51QmcDHGO5QXKndI2ElFYEMev3rOiTvlR9ffzeOyWsp43HRh8WuBKLn3HEgPCBhJ4UUcWmvaTEoZgwI9iDBNrFupB00VnCO314w";
+        Stripe.apiKey = System.getenv("STRIPE_SECRET");
     }
 
         public String createCheckOutSession(double amount, String currency, String successUrl, String cancelUrl) throws StripeException {
