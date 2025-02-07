@@ -52,7 +52,7 @@ public class DrinkService {
             }
         } catch (Exception e) {
             throw new RuntimeException("Error fetching category data", e); // Handle exceptions
-        }
+        } 
         return drinks; // Return the list of drinks (empty if no matches found)
     }
     

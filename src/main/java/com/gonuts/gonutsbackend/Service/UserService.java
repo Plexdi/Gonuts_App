@@ -58,6 +58,7 @@ public class UserService {
         return futureSnapshot;
     }
 
+
     public String addLoyaltyPoint(String userId, Integer amount) {
         Integer currentLoyaltyPoints = getLoyaltyPoints(userId); 
         Integer newLoyaltyPoints = currentLoyaltyPoints + amount;
@@ -86,7 +87,7 @@ public class UserService {
         } else if (newLoyaltyPoints < 20) {
             int pointsRemaining = 20 - newLoyaltyPoints;
             responseMessage.append(" You need ").append(pointsRemaining)
-                .append(" more points** to earn a free large-sized boba drink.");
+                .append(" more points to earn a free large-sized boba drink.");
         }
     
         return responseMessage.toString();
